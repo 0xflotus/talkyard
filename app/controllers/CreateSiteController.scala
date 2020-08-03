@@ -143,7 +143,7 @@ class CreateSiteController @Inject()(cc: ControllerComponents, edContext: EdCont
     val goToUrl: String =
       try {
         // Not dangerous: We'll use a new site id.
-        globals.systemDao.dangerous_readWriteTransaction { sysTx =>
+        globals.systemDao.writeTxLockAllSites { sysTx =>
           globals.systemDao.createAdditionalSite(
             anySiteId = None,
             pubId = Site.newPubId(),
