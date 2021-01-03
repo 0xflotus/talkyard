@@ -266,6 +266,9 @@ security:
   edit wiki topics permission:
           - permissions-edit-wiki-posts.2browsers.test.ts  TyT603RKDEJ46.TyTWIKIPRMS
   misc security: SEC_TEST_MISSING
+  xss:
+          - coed tag: [e2e_xss] — but at other places too, didn't tag at the time
+            search for "<script>" or "javascript:" to find?
 
 suspended users:
   gets no email notfs,
@@ -540,6 +543,12 @@ link previews:
     private chat:
     whisper post:
     deleted post:
+  changed to https if server uses https:
+          - link-previews-http-to-https.1br.test.ts  TyTE2ELNPVHTTPS
+  changed to any CDN:
+          - embedded-comments-uploads-origin.test.ts  TyT603RKDJA6
+          - TESTS_MISSING: CDN w/o emb coms.
+          (but Not: upload-images-and-files  TyT50E6KTDU7 )
 
 backlinks,
 internal links:
