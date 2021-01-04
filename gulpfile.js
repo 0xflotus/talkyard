@@ -259,7 +259,7 @@ var slimJsFiles = [
       'client/third-party/popuplib.js',
       'client/app-slim/login/login-popup.js',
       'target/client/slim-typescript.js',
-      'client/app-slim/start-stuff.js'];
+      'client/app-slim/call-start-stuff.js'];
 
 // Sync with Makefile [more_js_files].
 var moreJsFiles = [
@@ -429,6 +429,7 @@ function compileServerTypescriptConcatJavascript() {
 }
 
 var swTypescriptProject = typeScript.createProject("client/serviceworker/tsconfig.json");
+var headTypescriptProject = typeScript.createProject("client/app-head/tsconfig.json");
 var slimTypescriptProject = typeScript.createProject("client/app-slim/tsconfig.json");
 var moreTypescriptProject = typeScript.createProject("client/app-more/tsconfig.json");
 var staffTypescriptProject = typeScript.createProject("client/app-staff/tsconfig.json");
@@ -481,6 +482,16 @@ gulp.task('compileSwTypescript', () => {
 gulp.task('compileSwTypescript-concatScripts',
         gulp.series('compileSwTypescript',() => {
   return makeConcatStream('talkyard-service-worker.js', swJsFiles, 'DoCheckNewer', false);
+}));
+
+
+gulp.task('compileHeadTypescript', () => {
+  return compileOtherTypescript(headTypescriptProject);
+});
+gulp.task('compileHeadTypescript-concatScripts',
+        gulp.series('compileHeadTypescript',() => {
+  return makeConcatStream('head-bundle.js',
+          ['target/client/head-typescript.js'], 'DoCheckNewer');
 }));
 
 
